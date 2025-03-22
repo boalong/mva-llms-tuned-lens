@@ -276,7 +276,7 @@ class TunedLens(Lens):
             **{k: v for k, v in kwargs.items() if k not in load_artifact_varnames}
         }
         # Load parameters
-        state = th.load(ckpt_path, **th_load_kwargs)
+        state = th.load(ckpt_path, map_location=th.device('cpu'), **th_load_kwargs)
 
         lens.layer_translators.load_state_dict(state)
 
